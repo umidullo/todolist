@@ -28,7 +28,7 @@ app.use(
 );
 
 app.get('/', (req: Request, res: Response) => {
-  res.send('hello World!');
+  res.send(`to see TODO items go http://localhost:3000/todos/`);
 });
 
 app.get('/todos', async (req: Request, res: Response) => {
@@ -38,7 +38,7 @@ app.get('/todos', async (req: Request, res: Response) => {
     const todos = await Todo.find()
       .limit(limit * 1)
       .skip((page - 1) * limit);
-    res.status(200).send({ todos });
+    res.status(200).json({ todos });
   } catch (err) {
     console.log(err);
     res.sendStatus(500);
@@ -50,7 +50,7 @@ app.post('/todos', async (req: Request, res: Response) => {
   const todo = new Todo({ message, completed });
   try {
     const result = await todo.save();
-    res.status(201).send(result);
+    res.status(201).json(result);
   } catch (err) {
     console.log(err);
     res.sendStatus(500);
@@ -60,17 +60,17 @@ app.post('/todos', async (req: Request, res: Response) => {
 app.get('/todos/:id', async (req: Request, res: Response) => {
   try {
     const todo = await Todo.findById(req.params.id);
-    res.status(200).send({ todo });
+    res.status(200).json(todo);
   } catch (err) {
     console.log(err);
-    res.sendStatus(500);
+    res.sendStatus(400);
   }
 });
 
 app.delete('/todos/:id', async (req: Request, res: Response) => {
   try {
     const todo = await Todo.remove({ _id: req.params.id });
-    res.status(200).send({ todo });
+    res.status(200).json(todo);
   } catch (err) {
     console.log(err);
     res.sendStatus(500);
@@ -83,7 +83,7 @@ app.patch('/todos/:id', async (req: Request, res: Response) => {
       { _id: req.params.id },
       { $set: { message: req.body.message, completed: req.body.completed } }
     );
-    res.send({ todo });
+    res.status(200).json(todo);
   } catch (err) {
     console.log(err);
     res.sendStatus(500);
