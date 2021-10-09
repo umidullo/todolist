@@ -46,8 +46,8 @@ app.get('/todos', async (req: Request, res: Response) => {
 });
 
 app.post('/todos', async (req: Request, res: Response) => {
-  const { text } = req.body;
-  const todo = new Todo({ text });
+  const { message, completed } = req.body;
+  const todo = new Todo({ message, completed });
   try {
     const result = await todo.save();
     res.status(201).send(result);
@@ -81,7 +81,7 @@ app.patch('/todos/:id', async (req: Request, res: Response) => {
   try {
     const todo = await Todo.updateOne(
       { _id: req.params.id },
-      { $set: { text: req.body.text } }
+      { $set: { message: req.body.message, completed: req.body.completed } }
     );
     res.send({ todo });
   } catch (err) {

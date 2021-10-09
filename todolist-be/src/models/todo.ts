@@ -3,10 +3,14 @@ import ITodo from '../interface/todo'
 
 const todoSchema: Schema = new Schema(
   {
-    text: {
+    message: {
       type: String,
       required: true,
     },
+    completed: {
+      type: Boolean,
+      required: true,
+    }
   },
   { timestamps: true }
 );
