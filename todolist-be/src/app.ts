@@ -3,21 +3,22 @@ import morgan from 'morgan';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import * as dotenv from 'dotenv';
-dotenv.config()
+dotenv.config();
 
 import Todo from './models/todo';
 
 const app: Application = express();
 
-const db =
-  'mongodb+srv://umidullo:fake_password@cluster0.76egr.mongodb.net/todolist?retryWrites=true&w=majority';
+const db = process.env.DB_CONNECTION;
 
-// const db = process.env.DB_CONNECTION;
-
-mongoose
-  .connect(db)
-  .then((res) => console.log('connected to db'))
-  .catch((err: Error) => console.log(err));
+if (db) {
+  mongoose
+    .connect(db)
+    .then((res) => console.log('connected to db'))
+    .catch((err: Error) => console.log(err));
+} else {
+  console.log('db is undefined');
+}
 
 app.use(cors());
 app.use(express.json());
@@ -32,8 +33,12 @@ app.get('/', (req: Request, res: Response) => {
 
 app.get('/todos', async (req: Request, res: Response) => {
   try {
-    const todos = await Todo.find();
-    res.send({ todos });
+    const page = parseInt(req.query.page as any) || 1;
+    const limit = parseInt(req.query.limit as any) || 10;
+    const todos = await Todo.find()
+      .limit(limit * 1)
+      .skip((page - 1) * limit);
+    res.status(200).send({ todos });
   } catch (err) {
     console.log(err);
     res.sendStatus(500);
@@ -45,7 +50,7 @@ app.post('/todos', async (req: Request, res: Response) => {
   const todo = new Todo({ text });
   try {
     const result = await todo.save();
-    res.json(result);
+    res.status(201).send(result);
   } catch (err) {
     console.log(err);
     res.sendStatus(500);
@@ -55,7 +60,7 @@ app.post('/todos', async (req: Request, res: Response) => {
 app.get('/todos/:id', async (req: Request, res: Response) => {
   try {
     const todo = await Todo.findById(req.params.id);
-    res.send({ todo });
+    res.status(200).send({ todo });
   } catch (err) {
     console.log(err);
     res.sendStatus(500);
@@ -65,7 +70,7 @@ app.get('/todos/:id', async (req: Request, res: Response) => {
 app.delete('/todos/:id', async (req: Request, res: Response) => {
   try {
     const todo = await Todo.remove({ _id: req.params.id });
-    res.send({ todo });
+    res.status(200).send({ todo });
   } catch (err) {
     console.log(err);
     res.sendStatus(500);
