@@ -9,7 +9,8 @@ import Todo from './models/todo';
 
 const app: Application = express();
 
-const db = process.env.DB_CONNECTION;
+// const db = process.env.DB_CONNECTION;
+const db = 'mongodb+srv://umidullo:fake_password@cluster0.76egr.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
 
 if (db) {
   mongoose
@@ -28,7 +29,7 @@ app.use(
 );
 
 app.get('/', (req: Request, res: Response) => {
-  res.send(`to see TODO items go http://localhost:3000/todos/`);
+  res.send(`to see TODO items go http://localhost:3001/todos/`);
 });
 
 app.get('/todos', async (req: Request, res: Response) => {
@@ -90,4 +91,5 @@ app.patch('/todos/:id', async (req: Request, res: Response) => {
   }
 });
 
-app.listen(process.env.PORT, (): void => console.log('server running'));
+// app.listen(process.env.PORT, (): void => console.log('server running'));
+app.listen(3001, (): void => console.log('server running'));
