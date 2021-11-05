@@ -10,7 +10,7 @@ import Todo from './models/todo';
 const app: Application = express();
 
 // const db = process.env.DB_CONNECTION;
-const db = 'mongodb+srv://umidullo:fake_password@cluster0.76egr.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+const db = 'mongodb+srv://umidullo:fake_password@cluster0.76egr.mongodb.net/todolist?retryWrites=true&w=majority'
 
 if (db) {
   mongoose
