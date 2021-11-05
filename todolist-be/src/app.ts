@@ -80,10 +80,11 @@ app.delete('/todos/:id', async (req: Request, res: Response) => {
 
 app.patch('/todos/:id', async (req: Request, res: Response) => {
   try {
-    const todo = await Todo.updateOne(
-      { _id: req.params.id },
-      { $set: { message: req.body.message, completed: req.body.completed } }
+    const todo = await Todo.findById(
+      { _id: req.params.id }
     );
+    Object.assign(todo, req.body)
+    todo?.save()
     res.status(200).json(todo);
   } catch (err) {
     console.log(err);
