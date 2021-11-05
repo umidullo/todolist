@@ -25,7 +25,7 @@ export default function Todo({todo, setCurrentId}) {
     <div className="todo">
       <div className="todo-content">
         <input checked={todo.completed} type="checkbox" className="checkbox" onChange={checkboxHandler} />
-        <p className="message">{todo.message} / {todo._id}</p>
+        <p className="message">{todo.message}</p>
       </div>
       <div className="buttons">
         <button className="edit" onClick={editHandler}>edit</button>
