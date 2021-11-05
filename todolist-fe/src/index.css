@@ -1,0 +1,34 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.todo-wrapper {
+  margin: 0 auto;
+  width: 1000px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.todo-content, .buttons, .todo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.todo {
+  width: 600px;
+  padding: 8px 10px;
+  margin: 10px;
+  border: 1px solid black;
+}
+
+.checkbox {
+  margin-right: 10px;
+}
+
+.buttons {
+  width: 80px;
+}
