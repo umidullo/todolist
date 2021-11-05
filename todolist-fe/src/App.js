@@ -1,10 +1,13 @@
-import React, {useEffect} from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getTodos } from './actions/todos';
 import Todo from './components/Todo';
 import Input from './components/Input';
 
 function App() {
+
+  const [currentId, setCurrentId] = useState(null)
+
   const dispatch = useDispatch()
   const todos = useSelector(state => state.todos)
 
@@ -15,8 +18,8 @@ function App() {
   return (
     <div className="App">
       <div className="todo-wrapper">
-      <Input/>
-        {todos.map((todo) => <Todo key={todo._id} todo={todo}/>)}
+        <Input setCurrentId={setCurrentId} currentId={currentId} />
+        {todos.map((todo) => <Todo setCurrentId={setCurrentId} key={todo._id} todo={todo} />)}
       </div>
     </div>
   );

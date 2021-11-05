@@ -1,20 +1,20 @@
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux';
-import { deleteTodo, updateTodoText } from '../actions/todos';
+import { deleteTodo, updateTodo } from '../actions/todos';
 
 
-export default function Todo({todo}) {
+export default function Todo({todo, setCurrentId}) {
 
   const dispatch = useDispatch()
 
   useEffect(() => {}, []);
 
   const checkboxHandler = () => {
-    dispatch(updateTodoText(todo._id, {...todo, completed: !todo.completed}))
+    dispatch(updateTodo(todo._id, {...todo, completed: !todo.completed}))
   }
 
   const editHandler = () => {
-    console.log('editTodo')
+    setCurrentId(todo._id)
   }
 
   const deleteHandler = () => {

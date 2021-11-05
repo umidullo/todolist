@@ -31,13 +31,13 @@ export const deleteTodo = (id) => async (dispatch) => {
   }
 }
 
-export const updateTodoText = (id, updatedText) => async (dispatch) => {
+export const updateTodo = (id, updatedText) => async (dispatch) => {
   try {
     // console.log('updatedText', updatedText)
     const { data } = await api.updateTodo(id, updatedText)
     // console.log('data', data)
 
-    dispatch({ type: 'UPD_TEXT', payload: data })
+    dispatch({ type: 'UPDATE', payload: data })
    } catch (error) {
     console.log(error)
   }

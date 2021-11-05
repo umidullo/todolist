@@ -6,7 +6,7 @@ const reducer = (todos = [], action) => {
       return todos.filter((todo) => todo._id !== action.payload);
     case 'CREATE':
       return [...todos, action.payload]
-    case 'UPD_TEXT':
+    case 'UPDATE':
       return todos.map((todo) => todo._id === action.payload._id ? action.payload : todo)
     default:
       return todos;
