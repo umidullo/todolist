@@ -5,9 +5,9 @@ const reducer = (todos = [], action) => {
     case 'DELETE':
       return todos.filter((todo) => todo._id !== action.payload);
     case 'CREATE':
-      console.log(todos)
-      console.log(action.payload)
       return [...todos, action.payload]
+    case 'UPD_TEXT':
+      return todos.map((todo) => todo._id === action.payload._id ? action.payload : todo)
     default:
       return todos;
   }

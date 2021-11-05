@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux';
-import { deleteTodo } from '../actions/todos';
+import { deleteTodo, updateTodoText } from '../actions/todos';
 
 
 export default function Todo({todo}) {
@@ -10,7 +10,7 @@ export default function Todo({todo}) {
   useEffect(() => {}, []);
 
   const checkboxHandler = () => {
-    console.log('checkboxHandler')
+    dispatch(updateTodoText(todo._id, {...todo, completed: !todo.completed}))
   }
 
   const editHandler = () => {

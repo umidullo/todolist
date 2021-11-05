@@ -14,8 +14,8 @@ export const createTodo = (newTodo) => async (dispatch) => {
   try {
     const { data } = await api.createTodo(newTodo)
 
-    dispatch({type: 'CREATE', payload: data})
-    
+    dispatch({ type: 'CREATE', payload: data })
+
   } catch (error) {
     console.log(error)
   }
@@ -27,6 +27,18 @@ export const deleteTodo = (id) => async (dispatch) => {
 
     dispatch({ type: 'DELETE', payload: id })
   } catch (error) {
+    console.log(error)
+  }
+}
+
+export const updateTodoText = (id, updatedText) => async (dispatch) => {
+  try {
+    // console.log('updatedText', updatedText)
+    const { data } = await api.updateTodo(id, updatedText)
+    // console.log('data', data)
+
+    dispatch({ type: 'UPD_TEXT', payload: data })
+   } catch (error) {
     console.log(error)
   }
 }
