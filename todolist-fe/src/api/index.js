@@ -6,3 +6,4 @@ export const getAllTodos = () => axios.get(url);
 
 export const deleteTodo = (id) => axios.delete(`${url}/${id}`)
 
+export const createTodo = (newTodo) => axios.post(url, newTodo)

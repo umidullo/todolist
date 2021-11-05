@@ -3,9 +3,11 @@ const reducer = (todos = [], action) => {
     case 'GET_ALL':
       return action.payload;
     case 'DELETE':
-    console.log(todos)
-    console.log(action.payload)
-      return todos.filter((todo) => todo._id !== action.payload)
+      return todos.filter((todo) => todo._id !== action.payload);
+    case 'CREATE':
+      console.log(todos)
+      console.log(action.payload)
+      return [...todos, action.payload]
     default:
       return todos;
   }

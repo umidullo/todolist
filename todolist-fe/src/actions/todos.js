@@ -10,6 +10,17 @@ export const getTodos = () => async (dispatch) => {
   }
 }
 
+export const createTodo = (newTodo) => async (dispatch) => {
+  try {
+    const { data } = await api.createTodo(newTodo)
+
+    dispatch({type: 'CREATE', payload: data})
+    
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 export const deleteTodo = (id) => async (dispatch) => {
   try {
     await api.deleteTodo(id)
