@@ -18,6 +18,7 @@ function App() {
   return (
     <div className="App">
       <div className="todo-wrapper">
+        <h1>Add New TODO</h1>
         <Input setCurrentId={setCurrentId} currentId={currentId} />
         {todos.map((todo) => <Todo setCurrentId={setCurrentId} key={todo._id} todo={todo} />)}
       </div>

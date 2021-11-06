@@ -4,32 +4,152 @@
   box-sizing: border-box;
 }
 
+body {
+  background: #fafafa;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.App {
+  width: 566px; 
+  min-height: 476px;
+  background: #ffffff;
+  box-shadow: 0px 10px 25px rgba(29, 52, 54, 0.08);
+  border-radius: 10px;
+}
+
 .todo-wrapper {
-  margin: 0 auto;
-  margin-top: 30px;
-  width: 1000px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 20px;
 }
 
-.todo-content, .buttons, .todo {
+h1 {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 25px;
+  letter-spacing: 0.02em;
+  color: #29a19c;
+}
+
+.todo-content,
+.buttons,
+.todo {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
 .todo {
-  width: 600px;
-  padding: 8px 10px;
-  margin: 10px;
-  border: 1px solid black;
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid rgba(40, 40, 70, 0.1);
+  box-sizing: border-box;
+  border-radius: 10px;
+
+  padding: 15px;
+  margin: 5px 0;
+
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 19px;
+  letter-spacing: 0.02em;
+  color: #282846;
+}
+
+.todo:hover {
+  background: rgba(41, 161, 156, 0.02);
 }
 
 .checkbox {
   margin-right: 10px;
+  width: 16px;
+  height: 16px;
 }
 
-.buttons {
-  width: 80px;
+.message {
+  font-size: 14px;
+  line-height: 19px;
+  letter-spacing: 0.02em;
+  color: #282846;
+}
+
+.message_completed {
+  text-decoration: line-through;
+}
+
+.edit {
+  margin-right: 10px;
+}
+
+.edit,
+.delete {
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.edit div,
+.delete div {
+  height: 18px;
+}
+
+.create-block {
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.create-message {
+  border: 1px solid rgba(40, 40, 70, 0.1);
+  border-radius: 8px;
+  flex: 1;
+  padding: 10px 15px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 19px;
+  letter-spacing: 0.02em;
+  color: #000000;
+}
+
+.add-todo {
+  cursor: pointer;
+  margin-left: 10px;
+  border: 0;
+  outline: none;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing: 0.01em;
+  color: #fafafa;
+  padding: 10px 25px;
+  background: #29a19c;
+  border-radius: 8px;
+}
+
+.add-todo:hover {
+  background: #2caca7;
+}
+
+.add-todo:active {
+  background: rgb(29, 119, 116);
+}
+
+.add-todo:disabled {
+  cursor: auto;
+  color: #2c2c2c;
+  background: #e2e2e2;
 }

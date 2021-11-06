@@ -26,7 +26,7 @@ export default function Input({ currentId, setCurrentId }) {
   return (
     <div className="create-block">
       <input type="text" className="create-message" value={newTodo.message} onChange={(e) => setNewTodo({ ...newTodo, message: e.target.value })} />
-      <button className="add-todo" disabled={!newTodo.message} onClick={addHandler}>{currentId ? 'update' : 'add'}</button>
+      <button className="add-todo" disabled={!newTodo.message} onClick={addHandler}>{currentId ? 'update todo' : 'create todo'}</button>
     </div>
   )
 }
