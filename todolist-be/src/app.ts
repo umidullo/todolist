@@ -7,6 +7,8 @@ dotenv.config();
 
 import Todo from './models/todo';
 
+const PORT = process.env.PORT || 3001
+
 const app: Application = express();
 
 // const db = process.env.DB_CONNECTION;
@@ -29,7 +31,7 @@ app.use(
 );
 
 app.get('/', (req: Request, res: Response) => {
-  res.send(`to see TODO items go http://localhost:3001/todos/`);
+  res.send(`to see TODO items go http://localhost:${PORT}/todos/`);
 });
 
 app.get('/todos', async (req: Request, res: Response) => {
@@ -93,4 +95,4 @@ app.patch('/todos/:id', async (req: Request, res: Response) => {
 });
 
 // app.listen(process.env.PORT, (): void => console.log('server running'));
-app.listen(3001, (): void => console.log('server running'));
+app.listen(PORT, (): void => console.log('server running'));
